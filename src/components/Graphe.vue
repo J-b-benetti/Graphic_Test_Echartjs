@@ -2,13 +2,13 @@
 import { ref, reactive, watch, onMounted } from 'vue';
 import * as echarts from 'echarts';
 
-//const props = defineProps(['data']);
+const props = defineProps(['data']);
 
 const chartRef = ref(null);
 const date = ref('');
 const valeur = ref('');
 
-const data = reactive([
+/*const data = reactive([
     { x: '01/01/2022', y: 50 },
     { x: '02/01/2022', y: 20 },
     { x: '03/01/2022', y: 40 },
@@ -20,7 +20,9 @@ const data = reactive([
     { x: '09/01/2022', y: 90 },
     { x: '10/01/2022', y: 40 },
     { x: '11/01/2022', y: 20 }
-]);
+]);*/
+
+const data = reactive(props.data);
 
 onMounted(() => {
     const chart = echarts.init(chartRef.value);
