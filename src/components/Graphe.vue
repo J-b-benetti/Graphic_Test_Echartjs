@@ -73,9 +73,9 @@ function ajoutData() {
 
 
 <template>
-    <label for="input1">Selectionner une date</label>
+    <label for="input1">Selectionner une date :</label>
     <input id="input1" type="date" v-model="date" /><br>
-    <label for="input2">Selectionner une valeur de température</label>
+    <label for="input2">Selectionner une valeur de température :</label>
     <input id="input2" type="number" min="0" max="60" v-model="valeur" /><br>
     <button class="ajout" @click="ajoutData">Ajouter</button>
 
