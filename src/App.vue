@@ -26,5 +26,7 @@ const datasets = ref([
 
 
 <style scoped>
-
+#title {
+  text-align: center;
+}
 </style>

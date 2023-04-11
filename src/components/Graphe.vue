@@ -2,11 +2,11 @@
 import { ref, reactive, watch, onMounted } from 'vue';
 import * as echarts from 'echarts';
 
-const props = defineProps(['data']);
+const props = defineProps(['data']);    // On définit les entrées du composant
 
 const chartRef = ref(null);
-const date = ref('');
-const valeur = ref('');
+const date = ref('');   // Fait référence au v-model
+const valeur = ref(''); // Fait référence au v-model
 
 /*const data = reactive([
     { x: '01/01/2022', y: 50 },
@@ -30,11 +30,33 @@ onMounted(() => {
         xAxis: {
             type: 'category',
             data: data.map(item => item.x),
-            name: "Date (jour)"
+            name: "Date (jour)",
+            axisLine: {
+                lineStyle: {
+                    color: 'black',
+                    width: 1,
+                    type: 'solid'
+                }
+            },
+            nameTextStyle: {
+                fontWeight: 'bolder',
+                fontSize: 15
+            }
         },
         yAxis: {
             type: 'value',
-            name: 'Valeur de température (°C)'
+            name: 'Valeur de température (°C)',
+            axisLine: {
+                lineStyle: {
+                    color: 'black',
+                    width: 1,
+                    type: 'solid'
+                }
+            },
+            nameTextStyle: {
+                fontWeight: 'bolder',
+                fontSize: 15
+            }
         },
         series: [{
             data: data.map(item => item.y),
@@ -73,23 +95,28 @@ function ajoutData() {
 
 
 <template>
-    <label for="input1">Selectionner une date :</label>
+    <label class="label_input" for="input1">Selectionner une date :</label>
     <input id="input1" type="date" v-model="date" /><br>
-    <label for="input2">Selectionner une valeur de température :</label>
+    <label class="label_input" for="input2">Selectionner une valeur de température :</label>
     <input id="input2" type="number" min="0" max="60" v-model="valeur" /><br>
-    <button class="ajout" @click="ajoutData">Ajouter</button>
+    <button class="ajout_button" @click="ajoutData">Ajouter</button>
 
     <div class="graphique" ref="chartRef"></div>
 </template>
 
 
 <style scoped>
+.label_input {
+    font-size: 20px;
+    margin-left: 1.5rem;
+}
+
 #input1 {
     margin-left: 10px;
     margin-bottom: 1rem;
     border-radius: 5px;
     width: 10%;
-    height: 18px;
+    height: 20px;
 }
 
 #input2 {
@@ -100,14 +127,15 @@ function ajoutData() {
     height: 18px;
 }
 
-.ajout {
+.ajout_button {
     margin-bottom: 1rem;
+    margin-left: 1.5rem;
     border-radius: 3px;
+    font-size: 20px;
     cursor: pointer;
-}
-
-#title {
-    text-align: center;
+    color: black;
+    font-weight: bold;
+    background-color: aquamarine;
 }
 
 .graphique {
